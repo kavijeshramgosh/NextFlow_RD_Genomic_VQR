@@ -1,0 +1,7 @@
+.nextflow.log*
+.nextflow/
+results/FASTQC
+results/nextflow_reports
+work/
+/data/genome/
+/data/qsr_vcfs

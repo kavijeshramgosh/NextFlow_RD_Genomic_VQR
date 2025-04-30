@@ -80,9 +80,7 @@ sample2 /path/to/sample2.fastq.gz	2
 ```bash
 # Using Docker
 $ nextflow run -profile docker main.nf
-
-# Using docker in singularity
-$ nextflow run -profile singularity main.nf
+$ nextflow run main.nf -profile docker --index_genome true --genome_file /home/ky/NextFlow_RD_Genomic_VQR_KJesh/data/genome/Homo_sapiens_assembly38.fasta
 ```
 Note: Refer to the nexrflow.config and nextflow_schema.json for parameter selection. 
 

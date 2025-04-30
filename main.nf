@@ -48,10 +48,10 @@ if (params.identity_analysis) {
 }
 if (params.aligner == 'bwa-mem') {
     include { alignReadsBwaMem } from './modules/alignReadsBwaMem'
-} else if (params.aligner == 'bwa-aln') {
-    include { alignReadsBwaAln } from './modules/alignReadsBwaAln'
+} else if (params.aligner == 'bowtie2') {
+    include { alignReadsBowtie2 } from './modules/alignReadsBowtie2'
 } else {
-    error "Unsupported aligner: ${params.aligner}. Please specify 'bwa-mem' or 'bwa-aln'."
+    error "Unsupported aligner: ${params.aligner}. Please specify 'bwa-mem' or 'bowtie2'."
 }
 if (params.variant_caller == 'haplotype-caller') {
     include { haplotypeCaller } from './modules/haplotypeCaller'
@@ -101,8 +101,8 @@ workflow {
     // Align reads to the indexed genome
     if (params.aligner == 'bwa-mem') {
         align_ch = alignReadsBwaMem(read_pairs_ch, indexed_genome_ch.collect())
-    } else if (params.aligner == 'bwa-aln') {
-        align_ch = alignReadsBwaAln(read_pairs_ch, indexed_genome_ch.collect())
+    } else if (params.aligner == 'bowtie2') {
+        align_ch = alignReadsBowtie2(read_pairs_ch, indexed_genome_ch.collect())
     }
 
     // Sort BAM files
